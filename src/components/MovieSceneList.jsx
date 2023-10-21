@@ -10,10 +10,11 @@ const MovieSceneList = ({ data }) => {
     );
   } else {
     const renderMovies = data.map((scene, i) => {
+
       return (
-        <li className="movieList" key={scene.id}>
+        <section key={i} className="movieList">
           <MovieSceneItem scene={scene} />
-        </li>
+        </section>
       );
     });
     return (
@@ -25,3 +26,6 @@ const MovieSceneList = ({ data }) => {
 };
 
 export default MovieSceneList;
+
+
+
