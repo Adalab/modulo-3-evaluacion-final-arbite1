@@ -1,19 +1,27 @@
 import React from "react";
-//import SceneItem from './SceneItem';
+import MovieSceneItem from "./MovieSceneItem";
 
 const MovieSceneList = ({ data }) => {
-  return data.map((scene, i) => {
+  if (data.length === 0) {
     return (
-      <ul>
-        <li className='movieList' key={i}>
-          <img src={scene.poster} alt={scene.movie} />
-          <p>Película: {scene.movie}</p>
-          <p>Frase Completa: {scene.fullLine}</p>
-          <p>Año: {scene.year}</p>
-        </li>
-      </ul>
+      <section>
+        <p>No existe ningún título que coincida con.</p>
+      </section>
     );
-  });
+  } else {
+    const renderMovies = data.map((scene, i) => {
+      return (
+        <li className="movieList" key={scene.id}>
+          <MovieSceneItem scene={scene} />
+        </li>
+      );
+    });
+    return (
+      <section>
+        <ul>{renderMovies}</ul>
+      </section>
+    );
+  }
 };
 
 export default MovieSceneList;

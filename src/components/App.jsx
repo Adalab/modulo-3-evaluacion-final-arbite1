@@ -4,15 +4,15 @@ import callToApi from './services/api';
 //import ls from '../services/localStorage';
 import { useEffect, useState } from 'react';
 import MovieSceneList from './MovieSceneList';
-//import SceneItem from './SceneItem';
+//import MovieSceneItem from './MovieSceneItem';
 
 function App() {
 
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    callToApi().then((dataApi) => {
-      setData(dataApi);
+    callToApi().then((cleanData) => {
+      setData(cleanData);
     });
   }, []);
 
@@ -28,7 +28,8 @@ function App() {
         <div>
           <h2>Listado de escenas de Owen Wilson</h2>
           <MovieSceneList data={data} />
-          {/*<SceneItem/>*/}
+          
+        
         </div>
       </main>
     </>
