@@ -1,25 +1,39 @@
-
-import reactLogo from '../images/react.svg'
+import React from 'react';
 import '../styles/App.scss'
-import { Route, Routes } from 'react-router-dom'
+import callToApi from './services/api';
+//import ls from '../services/localStorage';
+import { useEffect, useState } from 'react';
+import MovieSceneList from './MovieSceneList';
+//import SceneItem from './SceneItem';
 
 function App() {
- 
+
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    callToApi().then((dataApi) => {
+      setData(dataApi);
+    });
+  }, []);
+
+  
 
   return (
     <>
-  <div>
-  <h1>Owens Wilson's "wow"</h1>
-  </div>
-  <div>
-    <h2>Listado de escenas de Owen Wilson</h2>
-    <ul>
-      <li></li>
-    </ul>
-  </div>
-   </>
+      <header>
+        <h1>Owens Wilson's "wow"</h1>
+      </header>
+      <main>
+  
+        <div>
+          <h2>Listado de escenas de Owen Wilson</h2>
+          <MovieSceneList data={data} />
+          {/*<SceneItem/>*/}
+        </div>
+      </main>
+    </>
   )
 }
 
 
-export default App
+export default App;
