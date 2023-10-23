@@ -7,7 +7,7 @@ const MovieSceneList = ({ data }) => {
   if (data.length === 0) {
     return (
       <section>
-        <p>No existe ningún título que coincida con.</p>
+        <p>No hay coincidencias</p>
       </section>
     );
   } else {

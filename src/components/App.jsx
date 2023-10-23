@@ -45,14 +45,21 @@ function App() {
 
         yearFilter ? item.year === yearFilter : true // per defecte si està vuit es false
     );
+    const getYear = () => {
+      const years = data.map((item) => item.year);
+      const uniquesYears = new Set(years);
+      const uniquesArray = [...uniquesYears];
+      uniquesArray.sort(); // Ordena los años
+      return uniquesArray;
+    };
 
   const { pathname } = useLocation();
   const routeData = matchPath("/movie/:id", pathname);
 
   const movieId = routeData !== null ? routeData.params.id : "";
-  console.log(movieId);
+ // console.log(movieId);
   const movieData = data.find((movie) => movie.id === movieId);
-  console.log(movieData);
+ // console.log(movieData);
 
   return (
     <>
@@ -70,6 +77,7 @@ function App() {
                   yearFilter={yearFilter}
                   handleChange={handleChange}
                   handleChangeYear={handleChangeYear}
+                  years={getYear()}
                 />
                 <div className="container">
                   <h2>Listado de escenas de Owen Wilson</h2>
