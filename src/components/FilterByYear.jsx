@@ -7,7 +7,7 @@ const FilterByYear = ({yearFilter,handleChangeYear}) => {
   };
   return (
     <>
-    <label htmlFor="year">
+    <label htmlFor="year">Years
       <input
         type="number"
         name="year"
