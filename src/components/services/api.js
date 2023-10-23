@@ -20,7 +20,7 @@ const callToApi = () => {
           id: newId,
         };
       });
-      console.log(cleanData.id);
+      console.log(cleanData);
 
       return cleanData;
     });

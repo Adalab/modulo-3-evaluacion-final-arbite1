@@ -6,9 +6,8 @@ import callToApi from "./services/api";
 import ls from "./services/localStorage";
 import MovieSceneList from "./MovieSceneList";
 import Filters from "./Filters";
-import MovieSceneDetail from './MovieSceneDetail';
-import { useLocation } from 'react-router';
-
+import MovieSceneDetail from "./MovieSceneDetail";
+import { useLocation } from "react-router";
 
 function App() {
   const [data, setData] = useState(ls.get("movies", []));
@@ -47,13 +46,13 @@ function App() {
         yearFilter ? item.year === yearFilter : true // per defecte si està vuit es false
     );
 
-     const {pathname} = useLocation();
-     const routeData = matchPath("/movie/:id",pathname)
-    
-      const movieId = routeData !== null ? routeData.params.id : "";
-    console.log(movieId);
-    const movieData = data.find((movie) => movie.id === parseInt(movieId));
-   
+  const { pathname } = useLocation();
+  const routeData = matchPath("/movie/:id", pathname);
+
+  const movieId = routeData !== null ? routeData.params.id : "";
+  console.log(movieId);
+  const movieData = data.find((movie) => movie.id === movieId);
+  console.log(movieData);
 
   return (
     <>
@@ -63,46 +62,34 @@ function App() {
       <main>
         <Routes>
           <Route
-          path="/"
-          element ={
-            <>
-            <Filters
-            nameFilter={nameFilter}
-            yearFilter={yearFilter}
-            handleChange={handleChange}
-            handleChangeYear={handleChangeYear}
-          />
-          <div className="container">
-            <h2>Listado de escenas de Owen Wilson</h2>
-            <h2>{nameFilter}</h2>
-  
-            <MovieSceneList data={filteredMovies} />
-          </div>
-          </>
-          }
+            path="/"
+            element={
+              <>
+                <Filters
+                  nameFilter={nameFilter}
+                  yearFilter={yearFilter}
+                  handleChange={handleChange}
+                  handleChangeYear={handleChangeYear}
+                />
+                <div className="container">
+                  <h2>Listado de escenas de Owen Wilson</h2>
+                  <h2>{nameFilter}</h2>
+
+                  <MovieSceneList data={filteredMovies} />
+                </div>
+              </>
+            }
           />
           <Route
-         
-          path='/movie/:id'
-          element={
-            <>
-          
-          <MovieSceneDetail data={data} movieId={movieId}/>
-           <Link to="/">Volver</Link> 
-          </>
-          } 
+            path="/movie/:id"
+            element={
+              <>
+                <MovieSceneDetail data={movieData} />
+                <Link to="/">Volver</Link>
+              </>
+            }
           />
-            
-          
-
-
-         
-        
-            
-
-        
         </Routes>
-   
       </main>
     </>
   );
