@@ -1,12 +1,14 @@
 import React from "react";
 import "../styles/App.scss";
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link, matchPath } from "react-router-dom";
 import callToApi from "./services/api";
 import ls from "./services/localStorage";
-
 import MovieSceneList from "./MovieSceneList";
 import Filters from "./Filters";
+import MovieSceneDetail from './MovieSceneDetail';
+import { useLocation } from 'react-router';
+
 
 function App() {
   const [data, setData] = useState(ls.get("movies", []));
@@ -19,6 +21,7 @@ function App() {
       callToApi().then((cleanData) => {
         setData(cleanData);
         ls.set("movies", cleanData);
+        console.log(cleanData.id);
       });
     }
   }, []);
@@ -43,6 +46,14 @@ function App() {
 
         yearFilter ? item.year === yearFilter : true // per defecte si està vuit es false
     );
+
+     const {pathname} = useLocation();
+     const routeData = matchPath("/movie/:id",pathname)
+    
+      const movieId = routeData !== null ? routeData.params.id : "";
+    console.log(movieId);
+    const movieData = data.find((movie) => movie.id === parseInt(movieId));
+   
 
   return (
     <>
@@ -70,6 +81,26 @@ function App() {
           </>
           }
           />
+          <Route
+         
+          path='/movie/:id'
+          element={
+            <>
+          
+          <MovieSceneDetail data={data} movieId={movieId}/>
+           <Link to="/">Volver</Link> 
+          </>
+          } 
+          />
+            
+          
+
+
+         
+        
+            
+
+        
         </Routes>
    
       </main>

@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from "uuid";
+
 const callToApi = () => {
   // Llamamos a la API
   return fetch(
@@ -6,6 +8,7 @@ const callToApi = () => {
     .then((response) => response.json())
     .then((data) => {
       const cleanData = data.map((scene) => {
+        const newId = uuidv4();
         return {
           poster: scene.poster,
           movie: scene.movie,
@@ -14,9 +17,10 @@ const callToApi = () => {
           fullLine: scene.full_line,
           year: scene.year,
           audio: scene.audio,
-          //  id: uuid,
+          id: newId,
         };
       });
+      console.log(cleanData.id);
 
       return cleanData;
     });

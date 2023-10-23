@@ -1,5 +1,7 @@
 import React from "react";
 import MovieSceneItem from "./MovieSceneItem";
+import{Link,} from "react-router-dom";
+
 
 const MovieSceneList = ({ data }) => {
   if (data.length === 0) {
@@ -12,9 +14,11 @@ const MovieSceneList = ({ data }) => {
     const renderMovies = data.map((scene, i) => {
 
       return (
-        <section key={i} className="movieList">
+        <Link key={scene.id} to={"/movie/" + scene.id}>
+        <section className="movieList">
           <MovieSceneItem scene={scene} />
         </section>
+        </Link>
       );
     });
     return (
@@ -26,6 +30,8 @@ const MovieSceneList = ({ data }) => {
 };
 
 export default MovieSceneList;
+
+
 
 
 
