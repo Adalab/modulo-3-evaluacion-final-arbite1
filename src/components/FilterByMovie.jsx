@@ -5,8 +5,8 @@ const FilterByMovie = ({ nameFilter, handleChange }) => {
 
   return( 
   <>
-    <label htmlFor="movie">Movies
-      <input
+    <label htmlFor="movie"className='titleMovie'>Movies
+      <input className='inputTitle'
         type="text"
         name="movie"
         id="id"

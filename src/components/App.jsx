@@ -13,7 +13,14 @@ function App() {
   const [data, setData] = useState(ls.get("movies", []));
   const [nameFilter, setNameFilter] = useState("");
   const [yearFilter, setYearFilter] = useState("");
-  // const [sceneDetailFilter, setSceneDetailFilter] = useState("");
+
+  // Get unique years from the data
+  const uniqueYears = data.reduce((acc, item) => {
+    if (!acc.includes(item.year)) {
+      acc.push(item.year);
+    }
+    return acc;
+  }, []);
 
   useEffect(() => {
     if (ls.get("movies", null) === null) {
@@ -34,32 +41,15 @@ function App() {
 
   const filteredMovies = data
     .filter((item) => {
-      // console.log(item.movie);
-      // console.log(item.movie.toLowerCase().includes(nameFilter));
       return item.movie.toLowerCase().includes(nameFilter);
     })
-    .filter(
-      (item) =>
-        // console.log(typeof item.year);
-        // console.log(typeof yearFilter);
-
-        yearFilter ? item.year === yearFilter : true // per defecte si està vuit es false
-    );
-    const getYear = () => {
-      const years = data.map((item) => item.year);
-      const uniquesYears = new Set(years);
-      const uniquesArray = [...uniquesYears];
-      uniquesArray.sort(); // Ordena los años
-      return uniquesArray;
-    };
+    .filter((item) => (yearFilter ? item.year === parseInt(yearFilter) : true));
 
   const { pathname } = useLocation();
   const routeData = matchPath("/movie/:id", pathname);
 
   const movieId = routeData !== null ? routeData.params.id : "";
- // console.log(movieId);
   const movieData = data.find((movie) => movie.id === movieId);
- // console.log(movieData);
 
   return (
     <>
@@ -77,10 +67,10 @@ function App() {
                   yearFilter={yearFilter}
                   handleChange={handleChange}
                   handleChangeYear={handleChangeYear}
-                  years={getYear()}
+                  years={uniqueYears}
                 />
                 <div className="container">
-                  <h2>Listado de escenas de Owen Wilson</h2>
+                  <h2 className='title'>Listado de escenas de Owen Wilson</h2>
                   <h2>{nameFilter}</h2>
 
                   <MovieSceneList data={filteredMovies} />
@@ -104,3 +94,4 @@ function App() {
 }
 
 export default App;
+
