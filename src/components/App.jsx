@@ -14,13 +14,7 @@ function App() {
   const [nameFilter, setNameFilter] = useState("");
   const [yearFilter, setYearFilter] = useState("");
 
-  // Get unique years from the data
-  const uniqueYears = data.reduce((acc, item) => {
-    if (!acc.includes(item.year)) {
-      acc.push(item.year);
-    }
-    return acc;
-  }, []);
+
 
   useEffect(() => {
     if (ls.get("movies", null) === null) {
@@ -45,6 +39,14 @@ function App() {
     })
     .filter((item) => (yearFilter ? item.year === parseInt(yearFilter) : true));
 
+    const getYears = () => {
+      const years = data.map((scene) => scene.year);
+      const uniqueYear = new Set(years);
+      const uniqueArray = [...uniqueYear];
+      return uniqueArray.sort();
+    };
+  
+
   const { pathname } = useLocation();
   const routeData = matchPath("/movie/:id", pathname);
 
@@ -54,7 +56,7 @@ function App() {
   return (
     <>
       <header>
-        <h1>Owens Wilson's "wow"</h1>
+        <h1 className='h1'>Owens Wilson's "wow"</h1>
       </header>
       <main>
         <Routes>
@@ -67,7 +69,7 @@ function App() {
                   yearFilter={yearFilter}
                   handleChange={handleChange}
                   handleChangeYear={handleChangeYear}
-                  years={uniqueYears}
+                  years={getYears()}
                 />
                 <div className="container">
                   <h2 className='title'>Listado de escenas de Owen Wilson</h2>
@@ -83,7 +85,7 @@ function App() {
             element={
               <>
                 <MovieSceneDetail data={movieData} />
-                <Link to="/">Volver</Link>
+                <Link to="/" className='title__return'>Volver</Link>
               </>
             }
           />

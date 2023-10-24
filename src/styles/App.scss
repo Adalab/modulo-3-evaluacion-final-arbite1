@@ -1,46 +1,104 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 img {
-  width: 200px;
-  height: 200px;
+  width: 20rem;
+  height: 20rem;
 }
 ul {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr;
-  grid-gap: 10px;
+  grid-gap: 1rem;
   list-style: none;
 }
 body {
-  background: #0f0c29; /* Old browsers */ background: -moz-linear-gradient(left, #0f0c29 0%, #302b63 100%); /* FF3.6-15 */ background: -webkit-linear-gradient(left, #0f0c29 0%,#302b63 100%); /* Chrome10-25,Safari5.1-6 */ background: linear-gradient(to right, #0f0c29 0%,#302b63 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0f0c29', endColorstr='#302b63',GradientType=1 ); /* IE6-9 */}
+  margin-top: 3rem;
+  margin-left: 5rem;
+  background: #0f0c29; /* Old browsers */
+  background: -moz-linear-gradient(
+    left,
+    #0f0c29 0%,
+    #302b63 100%
+  ); /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    left,
+    #0f0c29 0%,
+    #302b63 100%
+  ); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    to right,
+    #0f0c29 0%,
+    #302b63 100%
+  ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0f0c29', endColorstr='#302b63',GradientType=1 ); /* IE6-9 */
+}
 
-h1 {
+.h1 {
   text-align: center;
   font-family: Arial;
-  font-size: 40px;
+  font-size: 4rem;
   color: #1278bf;
   text-shadow: 0px 0px 9px #508ad3;
+  padding-top: 2rem;
+  padding-bottom: 3rem;
 }
 .title {
   text-align: center;
   font-family: Arial;
-  font-size: 30px;
+  font-size: 3rem;
   color: #1278bf;
   text-shadow: 0px 0px 9px #508ad3;
+  padding-bottom: 5rem;
 }
 .titleMovie {
-  font-size: 20px;
+  font-size: 1.8rem;
   color: #1278bf;
-  padding-right: 15px;
+  padding-right: 1.5rem;
 }
 .titleYears {
-  font-size: 20px;
-  padding: 15px;
+  font-size: 1.8rem;
+  padding: 1.5rem;
   color: #1278bf;
 }
 .titleFilter {
   color: #1278bf;
+  padding-bottom: 2rem;
 }
-input{
+input {
   background-color: rgb(150, 237, 237);
   height: 25px;
   width: 250px;
+}
+.title__detail {
+  color: #1278bf;
+  padding-bottom: 1rem;
+  font-size: 2.3rem;
+}
+.title__detail-director {
+  color: #1278bf;
+  padding-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+.title__detail-year {
+  color: #1278bf;
+  padding-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+.title__detail-char {
+  color: #1278bf;
+  padding-bottom: 0.5rem;
+  font-size: 1.5rem;
+}
+.title__detail-full {
+  color: #1278bf;
+  padding-bottom: 1rem;
+  font-size: 1.5rem;
+}
+.title__return {
+  padding-left: 2rem;
+  font-size: 1.5rem;
 }
