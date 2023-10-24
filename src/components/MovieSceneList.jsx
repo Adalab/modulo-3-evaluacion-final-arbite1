@@ -2,7 +2,6 @@ import React from "react";
 import MovieSceneItem from "./MovieSceneItem";
 import{Link,} from "react-router-dom";
 
-
 const MovieSceneList = ({ data }) => {
   if (data.length === 0) {
     return (
@@ -11,8 +10,11 @@ const MovieSceneList = ({ data }) => {
       </section>
     );
   } else {
-    const renderMovies = data.map((scene, i) => {
+    const sortMoviesByName = (movies) => {
+      return movies.sort((a, b) => a.movie.localeCompare(b.movie));
+    };
 
+    const renderMovies = sortMoviesByName(data).map((scene, i) => {
       return (
         <Link key={scene.id} to={"/movie/" + scene.id}>
         <section className="movieList">
@@ -30,6 +32,7 @@ const MovieSceneList = ({ data }) => {
 };
 
 export default MovieSceneList;
+
 
 
 
